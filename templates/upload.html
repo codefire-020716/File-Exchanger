@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Upload{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+    <div class="page-header">
+        <h3>Экспресс-файлы — сервис обмена информацией</h3>
+    </div>
+    <div class="kv-main">
+        <form enctype="multipart/form-data">
+            <div class="form-group">
+                <input id="file-5" class="file" type="file" multiple data-preview-file-type="any" data-upload-url="upload">
+            </div>
+        </form>
+    </div>
+{% endblock %}
