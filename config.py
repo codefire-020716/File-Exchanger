@@ -1,4 +1,4 @@
-STORE_PATH = '~/Downloads/store/'
+STORE_PATH = '/Users/human/Downloads/store/'
 
 # DATABASE
 DB_USERNAME = 'student'
