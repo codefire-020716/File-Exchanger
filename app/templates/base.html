@@ -52,9 +52,9 @@
                 <li><a href="upload">Загрузить</a></li>
                 <li><a href="download">Скачать</a></li>
             </ul>
-            <form class="navbar-form navbar-right">
+            <form class="navbar-form navbar-right" action="/search" method="get">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Введите имя файла...">
+                    <input type="text" class="form-control" placeholder="Введите имя файла..." name="q" />
                 </div>
                 <button type="submit" class="btn btn-default">Поиск</button>
             </form>

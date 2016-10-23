@@ -3,6 +3,7 @@ import hashlib
 import os
 
 from flask import request, render_template
+from flask import send_file
 from werkzeug.utils import secure_filename
 
 from app import db
@@ -12,8 +13,17 @@ from main import application
 
 @application.route('/')
 def index():
-    return render_template('index.html', context={
-        'store': application.config.get('STORE_PATH')
+    return render_template('index.html', context={})
+
+
+@application.route('/search', methods=['GET'])
+def search_view():
+    q = request.args['q']
+
+    found = Upload.query.filter(Upload.file_name.like('%' + q + '%')).all()
+
+    return render_template('search.html', context={
+        'found': found
     })
 
 
@@ -48,3 +58,11 @@ def upload_process_data():
     return '{}'
     # send if error
     # return '{"error":"Test error response!"}'
+
+
+@application.route('/download/<string:key>', methods=['GET'])
+def download_action(key):
+    download_file = Upload.query.filter(Upload.access_key == key).first()
+
+    return send_file(os.path.join(application.config.get('STORE_PATH'), download_file.access_key),
+                     attachment_filename=download_file.file_name, as_attachment=True)
